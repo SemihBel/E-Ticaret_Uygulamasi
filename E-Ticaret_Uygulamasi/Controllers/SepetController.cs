@@ -16,10 +16,11 @@ namespace E_Ticaret_Uygulamasi.Controllers
         // GET: Sepet
         public ActionResult SepeteEkle(int? adet,int id)
         {
-            Urunler urun = db.Urunler.Find(id);
-            Sepet sepetUrun = db.Sepet.FirstOrDefault(x => x.UrunID == id);
-
             string userID = User.Identity.GetUserId();
+            Urunler urun = db.Urunler.Find(id);
+            Sepet sepetUrun = db.Sepet.FirstOrDefault(x => x.UrunID == id && x.UserID==userID);
+
+            
             if (sepetUrun == null)
             {
                 Sepet yeniUrun = new Sepet()
